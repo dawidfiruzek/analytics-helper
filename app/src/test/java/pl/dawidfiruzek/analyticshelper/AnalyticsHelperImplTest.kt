@@ -12,7 +12,7 @@ class AnalyticsHelperImplTest : BaseTest() {
     private lateinit var analytics: Analytics
 
     @Mock
-    private lateinit var userProperty: UserProperty
+    private lateinit var properties: List<UserProperty>
 
     private lateinit var helper: AnalyticsHelper
 
@@ -25,7 +25,7 @@ class AnalyticsHelperImplTest : BaseTest() {
         super.tearDown()
         verifyNoMoreInteractions(
                 analytics,
-                userProperty
+                properties
         )
     }
 
@@ -41,7 +41,6 @@ class AnalyticsHelperImplTest : BaseTest() {
     @Test
     fun `should call logEvent with properties for each analytics when logEvent is called`() {
         val eventName = "eventName"
-        val properties = listOf(userProperty)
 
         helper.logEvent(eventName, properties)
 
@@ -50,8 +49,6 @@ class AnalyticsHelperImplTest : BaseTest() {
 
     @Test
     fun `should call logUserProperties for each analytics when logUserProperties is called`() {
-        val properties = listOf(userProperty)
-
         helper.logUserProperties(properties)
 
         verify(analytics, times(1)).logUserProperties(properties)

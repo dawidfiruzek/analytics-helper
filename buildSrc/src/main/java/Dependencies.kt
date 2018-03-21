@@ -13,7 +13,6 @@ object Versions {
     const val firebase = "11.8.0"
     const val junit = "4.12"
     const val mockito = "2.16.0"
-    const val powerMock = "1.7.4"
 }
 
 object ClassPaths {
@@ -30,6 +29,4 @@ object Libs {
     const val firebaseAnalytics = "com.google.firebase:firebase-core:${Versions.firebase}"
     const val junit = "junit:junit:${Versions.junit}"
     const val mockito = "org.mockito:mockito-core:${Versions.mockito}"
-    const val powerMockJunit = "org.powermock:powermock-module-junit4:${Versions.powerMock}"
-    const val powerMockMockito = "org.powermock:powermock-api-mockito2:${Versions.powerMock}"
 }
