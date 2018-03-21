@@ -71,6 +71,8 @@ dependencies {
     implementation Libs.firebaseAnalytics
     testImplementation Libs.junit
     testImplementation Libs.mockito
+    testImplementation Libs.powerMockJunit
+    testImplementation Libs.powerMockMockito
 }
 
 task uploadLib(type: GradleBuild) {
