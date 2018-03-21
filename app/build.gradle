@@ -76,8 +76,8 @@ dependencies {
 task uploadLib(type: GradleBuild) {
     tasks = [
             'clean',
-            'assemble',
             'test',
+            'assemble',
             'generatePomFileForReleasePublication',
             'bintrayUpload'
     ]
