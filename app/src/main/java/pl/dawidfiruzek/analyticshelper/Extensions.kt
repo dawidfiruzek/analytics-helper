@@ -20,7 +20,7 @@ internal fun List<UserProperty>.toBundle(): Bundle {
     return bundle
 }
 
-internal fun Bundle.put(key: String, value: Any) {
+private fun Bundle.put(key: String, value: Any) {
     when (value) {
         is Boolean -> putBoolean(key, value)
         is BooleanArray -> putBooleanArray(key, value)
