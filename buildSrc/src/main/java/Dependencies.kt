@@ -12,7 +12,7 @@ object Versions {
     const val facebook = "4.26.0"
     const val firebase = "11.8.0"
     const val junit = "4.12"
-    const val mockito = "2.5.0"
+    const val mockito = "2.16.0"
 }
 
 object ClassPaths {
