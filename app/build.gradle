@@ -1,0 +1,84 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'com.jfrog.bintray'
+apply plugin: 'maven-publish'
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath ClassPaths.bintray
+    }
+}
+
+bintray {
+    user = hasProperty('BINTRAY_USER') ? BINTRAY_USER : System.getenv('BINTRAY_USER')
+    key = hasProperty('BINTRAY_KEY') ? BINTRAY_USER : System.getenv('BINTRAY_KEY')
+    publications = ['release']
+    pkg {
+        repo = 'android'
+        name = 'analytics-helper'
+        licenses = ['Apache-2.0']
+        desc = 'Android library that helps log analytics\' events and properties'
+        vcsUrl = 'https://github.com/dawidfiruzek/analytics-helper.git'
+        labels = ['aar', 'android', 'kotlin']
+        publicDownloadNumbers = true
+        version {
+            name = Versions.versionName
+            released  = new Date()
+        }
+    }
+}
+
+publishing {
+    publications {
+        release(MavenPublication) {
+            artifact("$buildDir/outputs/aar/${artifactId}-release.aar")
+            groupId 'pl.dawidfiruzek'
+            artifactId 'analytics-helper'
+            version Versions.versionName
+        }
+    }
+}
+
+android {
+    compileSdkVersion Versions.compileSdk
+    defaultConfig {
+        minSdkVersion Versions.minSdk
+        targetSdkVersion Versions.targetSdk
+        versionCode Versions.versionCode
+        versionName Versions.versionName
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation Libs.kotlinStdlib
+    implementation(Libs.crashlytics) {
+        transitive = true
+    }
+    implementation Libs.amplitude
+    implementation(Libs.facebook)
+    implementation Libs.firebaseAnalytics
+    testImplementation Libs.junit
+    testImplementation Libs.mockito
+}
+
+task uploadLib(type: GradleBuild) {
+    tasks = [
+            'clean',
+            'assemble',
+            'test',
+            'generatePomFileForReleasePublication',
+            'bintrayUpload'
+    ]
+}
