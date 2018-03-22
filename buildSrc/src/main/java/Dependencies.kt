@@ -2,8 +2,8 @@ object Versions {
     const val compileSdk = 27
     const val minSdk = 16
     const val targetSdk = 27
-    const val versionCode = 1
-    const val versionName = "1.0"
+    const val versionCode = 2
+    const val versionName = "1.0.1"
     const val gradle = "3.0.1"
     const val kotlin = "1.2.30"
     const val bintray = "1.7.3"
