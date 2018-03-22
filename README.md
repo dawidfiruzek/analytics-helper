@@ -1,18 +1,73 @@
 # Analytics Helper
-Analytics Helper is an Android library that helps log analytics' events and properties
+Analytics Helper is an Android library that helps log analytics' events and properties.
+
+With library there are couple of default `Analytics` implementations, wchich are: `AmplitudeAnalytics`, `FabricAnalytics`, `FacebookAnalytics` and `FirebaseAnalytics`. 
+
+You can also create your own implementation of `Analytics` class and pass it to `AnalyticsHelper`
 
 Analytics Helper is written in Kotlin, so it can interop with Java. 
 
 ## Usage
 ### 1. Add gradle dependency
 ```
-
+compile 'pl.dawidfiruzek:analytics-helper:1.0.1'
 ```
 
 ### 2. Use it in your project
-Example usage:
-```Kotlin
+To use Analytics Helper in your project you have to create `AnalyticsHelper` implementation object.
+With library there is provided `AnalyticsHelperImpl`, which you can use to get default library behavior. 
 
+To use it, you have to provide list of `Analytics` as a constructor's parameter. 
+
+```Kotlin
+val analyticsList: List<Analytics> = listOf(
+    AmplitudeAnalytics(amplitudeClient),
+    FabricAnalytics(answers),
+    FacebookAnalytics(appEventsLogger),
+    FirebaseAnalytics(firebaseAnalytics)
+)
+val analyticsHelper: AnalyticsHelper = AnalyticsHelperImpl(analyticsList)
+```
+After creating `AnalyticsHelper` object, you can use it in your code in couple of ways:
+#### 1. Log event with it's name 
+```Kotlin
+analyticsHelper.logEvent("New event name")
+```
+#### 2. Log event with it's name and user properties
+```Kotlin
+val userProperties: List<UserProperty> = listOf(UserProperty("Property Name", "Property Value"))
+analyticsHelper.logEvent("New event name", userProperties)
+```
+#### 3. Log user properties
+```Kotlin
+val userProperties: List<UserProperty> = listOf(UserProperty("Property Name", "Property Value"))
+analyticsHelper.logUserProperties(userProperties)
+```
+After that, event or properties will be logged to all provided `Analytics` implementations.
+
+Notice that, when creating new `UserProperty` you can pass it's value as one of the following types:
+```
+Boolean
+BooleanArray
+Bundle
+Byte
+ByteArray
+Char
+CharArray
+CharSequence
+Double
+DoubleArray
+Float
+FloatArray
+Int
+IntArray
+Long
+LongArray
+Parcelable
+Serializable
+Short
+ShortArray
+String
 ```
 
 License
