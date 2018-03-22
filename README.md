@@ -1,4 +1,7 @@
 # Analytics Helper
+[![Download](https://api.bintray.com/packages/dawidfiruzek/android/analytics-helper/images/download.svg) ](https://bintray.com/dawidfiruzek/android/analytics-helper/_latestVersion)
+[![Build Status](https://www.bitrise.io/app/ade1c71e4e126388/status.svg?token=Ba5GCkelaEhwiK3t3HPpFw&branch=master)](https://www.bitrise.io/app/ade1c71e4e126388)
+
 Analytics Helper is an Android library that helps log analytics' events and properties.
 
 With library there are couple of default `Analytics` implementations, wchich are: `AmplitudeAnalytics`, `FabricAnalytics`, `FacebookAnalytics` and `FirebaseAnalytics`. 
