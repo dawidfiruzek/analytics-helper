@@ -45,7 +45,7 @@ analyticsHelper.logUserProperties(userProperties)
 ```
 After that, event or properties will be logged to all provided `Analytics` implementations.
 
-Please notice that when creating new `UserProperty` as it's value you can pass one of the following types:
+Notice that, when creating new `UserProperty` you can pass it's value as one of the following types:
 ```
 Boolean
 BooleanArray
