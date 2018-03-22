@@ -10,7 +10,7 @@ Analytics Helper is written in Kotlin, so it can interop with Java.
 ## Usage
 ### 1. Add gradle dependency
 ```
-compile 'pl.dawidfiruzek:analytics-helper:1.0'
+compile 'pl.dawidfiruzek:analytics-helper:1.0.1'
 ```
 
 ### 2. Use it in your project
